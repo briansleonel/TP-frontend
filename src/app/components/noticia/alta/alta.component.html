@@ -1,0 +1,54 @@
+<div class="container my-5 py-2">
+    <div class="mb-5">
+        <h2 class="text-center">Alta noticia</h2>
+    </div>
+    <form class="">
+        <div class="row mb-3">
+            <label for="titulo" class="col-sm-2 col-form-label">Título</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="noticia.titulo"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="noticia" class="col-sm-2 col-form-label">Noticia</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="noticia" name="noticia" [(ngModel)]="noticia.noticia" ></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="imagen" class="col-sm-2">Imagen</label>
+            <div class="col-sm-10">
+                <input id="imagen" name="imagen" type="file" alife-file-to-base64 multiple class="form-control" required (onFileChanged)="onFileChanges($event)">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="vistaPrevia" class="col-sm-2">Vista previa</label>
+            <div class="col-sm-10">
+                <img class="rounded m-auto" [src]="noticia.img" width="30%">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="vigente" name="vigente" value="true" [(ngModel)]="noticia.vigente" />
+                    <label class="form-check-label" for="vigente">
+                        Noticia vigente
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <p>
+            {{noticia | json}}
+        </p> -->
+
+        <div class="row justify-content-center mt-5">
+            <button type="button" class="btn btn-lg btn-primary col-sm-4" (click)="save()">Guardar noticia</button>
+        </div>
+        
+    </form>    
+</div>

@@ -1,0 +1,86 @@
+<div class="row my-4 my-md-5 mx-0 min-vh-100">
+    <section class="col-12 col-md-10 mx-auto py-1 px-3 py-sm-3 px-sm-5 border shadow bg-body rounded">
+        <div class="text-center text-uppercase text-decoration-underline mt-2 mt-md-3 mb-4 mb-md-5">
+            <h2>Pasajes</h2>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-10 col-12">
+                <form action="" class="row justify-content-center">
+                    <div class="mb-3 col-sm-6 col-12 row p-0">
+                        <div class="col-12 col-sm-5">
+                            <label for="categoria" class="form-label">Categoria pasajero:</label>
+                        </div>
+                        <div class="col-12 col-sm-7">
+                            <select id="categoria" name="categoria" class="form-select form-select-sm" (click)="viewPassages()" [(ngModel)]="find.categoriaPasajero">
+                                <option value="" selected></option>
+                                <option value="m">Menor</option>
+                                <option value="a">Adulto</option>
+                                <option value="j">Jubilado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" mb-3 col-sm-2 col-12 row">
+
+                        <button class="btn btn-primary btn-sm ms-sm-2 col-12" (click)="cleanFilters()">Limpiar filtro</button>
+                    </div>
+                    <!--
+                    <div class="mb-3 col-sm-6 col-12 row">
+                        <div class="col-6 col-sm-5">
+                            <label for="idiomaDestino" class="form-label">Idioma Destino:</label>
+                        </div>
+                        <div class="col-6 col-sm-7">
+                            <select id="idiomaDestino" name="idiomaDestino" class="form-select form-select-sm" (click)="viewLogs()" [(ngModel)]="find.target">
+                                <option value="" selected></option>
+                                <option value="en">Inglés</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Francés</option>
+                                <option value="it">Italiano</option>
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                </form>
+            </div>
+            
+        </div>
+
+        
+
+        <div class="p-md-2 mt-3 table-responsive">
+            <table class="table align-middle">
+                <thead class="table-dark">
+                    <tr class="text-center ">
+                        <th scope="col" rowspan="2">Precio</th>
+                        <th scope="col" rowspan="2">Categoria</th>
+                        <th scope="col" rowspan="2">Fecha Compra</th>
+                        <th scope="col" rowspan="1" colspan="3">Pasajero</th>
+                        <th scope="col" rowspan="2">Acciones</th>
+                    </tr>
+                    <tr class="text-center">
+                        <th class="border-dark" scope="col" >DNI</th>
+                        <th class="border-dark" scope="col">Apellido</th>
+                        <th class="border-dark" scope="col">Nombre</th>
+                        <!--
+                        <th scope="col">Acciones</th>
+                        -->
+                    </tr>
+                </thead>
+                <tbody  class="text-center">
+                    <tr *ngFor="let p of passages">
+                        <td> {{p.precioPasaje}} </td>
+                        <td> {{p.categoriaPasajero}} </td>
+                        <td> {{p.fechaCompra}} </td>
+                        <td> {{p.pasajero.nro_documento}} </td>
+                        <td> {{p.pasajero.apellido}} </td>
+                        <td> {{p.pasajero.nombre}} </td>
+                        <td>
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Del</button>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </section>
+</div>

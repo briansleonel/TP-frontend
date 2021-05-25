@@ -1,0 +1,83 @@
+<div class="row my-4 my-md-5 mx-0 min-vh-100">
+    <section class="col-12 col-md-10 mx-auto py-1 px-3 py-sm-3 px-sm-5 border shadow bg-body rounded">
+        <div class="text-center text-uppercase text-decoration-underline mt-2 mt-md-3 mb-4 mb-md-5">
+            <h2>Logs Traductor</h2>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-12 col-12">
+                <form action="" class="row p-0">
+                    <div class="mb-3 col-sm-5 col-12 row mx-auto p-0">
+                        <div class="col-6 col-sm-5">
+                            <label for="idiomaOrigen" class="form-label">Idioma Origen:</label>
+                        </div>
+                        <div class="col-6 col-sm-7">
+                            <select id="idiomaOrigen" name="idiomaOrigen" class="form-select form-select-sm" (click)="viewLogs()" [(ngModel)]="find.source">
+                                <option value="" selected></option>
+                                <option value="en">Inglés</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Francés</option>
+                                <option value="it">Italiano</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 col-sm-5 col-12 row mx-auto p-0">
+                        <div class="col-6 col-sm-5">
+                            <label for="idiomaDestino" class="form-label">Idioma Destino:</label>
+                        </div>
+                        <div class="col-6 col-sm-7">
+                            <select id="idiomaDestino" name="idiomaDestino" class="form-select form-select-sm" (click)="viewLogs()" [(ngModel)]="find.target">
+                                <option value="" selected></option>
+                                <option value="en">Inglés</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Francés</option>
+                                <option value="it">Italiano</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 col-sm-2 col-12 row mx-auto">
+                        <button class="btn btn-primary btn-sm ms-sm-2 col-12" (click)="cleanFilters()">Limpiar</button>
+                    </div>
+
+                </form>
+                
+            </div>
+
+            
+        </div>
+
+        
+
+        <div class="p-md-2 mt-3 table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Idioma Origen</th>
+                        <th scope="col">Idioma Destino</th>
+                        <th scope="col">Texto Origen</th>
+                        <th scope="col">Texto Destino</th>
+                        <!--
+                        <th scope="col">Acciones</th>
+                        -->
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr *ngFor="let t of logs">
+                        <td> {{t.source}} </td>
+                        <td> {{t.target}} </td>
+                        <td> {{t.input}} </td>
+                        <td> {{t.result}} </td>
+                        <!--
+                        <td>
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Del</button>
+                        </td>
+                        -->
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,21 @@
+.contenedor-textarea-traductor{
+    border: 1px solid gray;
+}
+
+.contenedor-textarea-traductor div textarea {
+    resize: none;
+    border: none;
+}
+
+.contenedor-textarea-traductor div button, .contenedor-textarea-traductor div button:hover, 
+.contenedor-textarea-traductor div button:focus, .contenedor-textarea-traductor div button:active, 
+.contenedor-textarea-traductor div button::before {
+    border: none;
+    background: none;
+    color: #000;
+    box-shadow: none;
+}
+
+.contenedor-textarea-traductor div textarea:focus {
+    outline: none;
+}

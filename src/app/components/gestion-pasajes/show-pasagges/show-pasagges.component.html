@@ -68,15 +68,21 @@
                 </thead>
                 <tbody  class="text-center">
                     <tr *ngFor="let p of passages">
-                        <td> {{p.precioPasaje}} </td>
+                        <td> {{p.precioPasaje | currency}} </td>
+                        <!--
                         <td> {{p.categoriaPasajero}} </td>
-                        <td> {{p.fechaCompra}} </td>
+                        -->
+                        <td *ngIf="p.categoriaPasajero == 'm' "> MENOR </td>
+                        <td *ngIf="p.categoriaPasajero == 'a' "> ADULTO </td>
+                        <td *ngIf="p.categoriaPasajero == 'j' "> JUBILADO </td>
+
+                        <td> {{p.fechaCompra | date : 'dd/MM/yyyy'}} </td>
                         <td> {{p.pasajero.nro_documento}} </td>
                         <td> {{p.pasajero.apellido}} </td>
                         <td> {{p.pasajero.nombre}} </td>
                         <td>
-                            <button class="btn btn-success">Edit</button>
-                            <button class="btn btn-danger">Del</button>
+                            <button class="btn btn-success" (click)="confirmUpdate(p)">Edit</button>
+                            <button class="btn btn-danger" (click)="confirmDelete(p)">Del</button>
                         </td>
                     </tr>
                 </tbody>

@@ -1,61 +1,105 @@
 <div class="row p-0 m-0">
-    <div class="col-12 col-sm-8 my-4 my-sm-5 mx-auto p-0">
+    <div class="col-12 col-sm-6 my-4 my-sm-5 mx-auto p-0">
         <div class="card shadow-lg my-1">
             <div class="card-header">
                 <h2 class="text-center text-uppercase my-2">Venta de Pasajes</h2>
             </div>
             <div class="card-body p-4">
 
-            <div class="row">
-                <div class="col-sm-6 col-12 mx-auto">
-                    <form>
-                        <!-- 
-                        <div class="row mb-3">
-                            <label for="dni" class="col-sm-4 col-12 col-form-label">DNI</label>
-                            <div class="col-sm-8 col-12">
-                                <input type="number" class="form-control" id="dni" name="dni" [(ngModel)]="pasaje.dniPasajero">
+                <div class="row">
+                    <div class="col-sm-10 col-12 mx-auto">
+                        <form class="" #pasajeForm="ngForm">
+                            <!-- 
+                            <div class="row mb-3">
+                                <label for="dni" class="col-sm-4 col-12 col-form-label">DNI</label>
+                                <div class="col-sm-8 col-12">
+                                    <input type="number" class="form-control" id="dni" name="dni" [(ngModel)]="pasaje.dniPasajero">
+                                </div>
                             </div>
-                        </div>
-                        -->
-                        <div class="row mb-3">
-                            <label for="precio" class="col-sm-4 col-12 col-form-label">Precio</label>
-                            <div class="col-sm-8 col-12">
-                                <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioSinDesc" (ngModelChange)="getDescuento()">
-                            </div>
-                        </div>
+                            -->
 
-                        <div class="row mb-3">
-                            <label for="categoria" class="col-sm-4 col-12 col-form-label">Categoría</label>
-                            <div class="col-sm-8 col-12">
-                                <select name="categoria" class="form-select" aria-label="Default select" [(ngModel)]="pasaje.categoriaPasajero" (ngModelChange)="getDescuento()">
-                                    <option selected disabled>Eliga una opción</option>
-                                    <option value="m">Menor</option>
-                                    <option value="a">Adulto</option>
-                                    <option value="j">Jubilado</option>
-                                </select>
+                            <div class="row mb-3">
+                                <label for="pasajero" class="col-sm-4 col-12 col-form-label">Pasajero</label>
+                                <div class="col-sm-6 col-12">
+                                    <select name="pasajero" class="form-select" aria-label="Default select" [(ngModel)]="pasaje.pasajero" required #pasajero="ngModel">
+                                        <option *ngFor="let p of pasajeros" [ngValue]="p"> {{p.apellido}} {{p.nombre}} </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-12 d-grid gap-1">
+                                    <button class="btn btn-info btn-sm mt-3 my-sm-0" (click)="addPasajero()">Nuevo</button>
+                                </div>
                             </div>
-                        </div>
+
+                            <div *ngIf="pasajero.invalid && pasajero.touched" class="alert alert-danger text-center">
+                                <div *ngIf="pasajero.errors.required">
+                                    Debe seleccionar un pasajero
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="precio" class="col-sm-4 col-12 col-form-label">Precio</label>
+                                <div class="col-sm-8 col-12">
+                                    <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioSinDesc" (ngModelChange)="getDescuento()" required #precio="ngModel">
+                                </div>
+                            </div>
+
+                            <div *ngIf="precio.invalid && precio.touched" class="alert alert-danger text-center">
+                                <div *ngIf="precio.errors.required">
+                                    Debe ingresar el precio del pasaje
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="categoria" class="col-sm-4 col-12 col-form-label">Categoría</label>
+                                <div class="col-sm-8 col-12">
+                                    <select name="categoria" class="form-select" aria-label="Default select" [(ngModel)]="pasaje.categoriaPasajero" (ngModelChange)="getDescuento()" required #categoria="ngModel">
+                                        <option selected disabled>Eliga una opción</option>
+                                        <option value="m">Menor</option>
+                                        <option value="a">Adulto</option>
+                                        <option value="j">Jubilado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger text-center">
+                                <div *ngIf="categoria.errors.required">
+                                    Debe seleccionar una categoría
+                                </div>
+                            </div>
+                            <!--
+                            <div *ngIf="alertMessage != ''" class="alert alert-danger my-5">
+                            <h5 class="text-center m-0 fw-light">{{alertMessage}}</h5>
+                            </div>
+                            -->
+                            <!--
+                            <p>Status: <span> {{pasajeForm.status}} </span></p>
+                            <p>Pasajero: <span> {{pasajero.errors | json}} </span></p>
+                            <p>Precio: <span> {{precio.errors | json}} </span></p>
+                            <p>Categoria: <span> {{categoria.errors | json}} </span></p>
+                            -->
+
+                            <div class="row my-5" *ngIf="precioSinDesc != null && pasaje.categoriaPasajero != null">
+                                <label for="precioTotal" class="col-sm-4 col-12 col-form-label">Precio total:</label>
+                                <div class="col-sm-8 col-12">
+                                    <span class="form-control bg-light fw-bold">{{pasaje.precioPasaje | currency}}</span>
+                                </div>
+                            </div>  
+
+                            <div class="row g-3 mt-5">
+                                <div class="col-12 col-sm-6 d-grid gap-2">
+                                    <button class="btn btn-lg btn-outline-danger text-uppercase" type="button" (click)="cancel()">Cancelar</button>
+                                </div>
+                                <div class="col-12 col-sm-6 d-grid gap-2">
+                                    <button class="btn btn-lg btn-outline-primary text-uppercase" type="button" [disabled]="pasajeForm.invalid" (click)="confirm()">Guardar</button>
+                                </div>
+                            </div>
+                            
+                        </form>
                         <!--
-                        <div *ngIf="alertMessage != ''" class="alert alert-danger my-5">
-                        <h5 class="text-center m-0 fw-light">{{alertMessage}}</h5>
-                        </div>
+                        <p>{{pasaje | json}}</p>
                         -->
-
-                        <div class="row my-5" *ngIf="precioSinDesc != null && pasaje.categoriaPasajero != null">
-                            <label for="precioTotal" class="col-sm-4 col-12 col-form-label">Precio total:</label>
-                            <div class="col-sm-8 col-12">
-                                <span class="form-control bg-light fw-bold">{{pasaje.precioPasaje | currency}}</span>
-                            </div>
-                        </div>  
-
-                        <div class="d-grid gap-2 mb-3 mt-5">
-                            <button class="btn btn-lg btn-outline-primary text-uppercase" type="button" >Registrar</button>
-                        </div>
-                    </form>
-
-                    <p>{{pasaje | json}}</p>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

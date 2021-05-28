@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PasajeComponent } from './components/gestion-pasajes/pasaje/pasaje.component';
+import { PasajeroComponent } from './components/gestion-pasajes/pasajero/pasajero.component';
 import { ShowPasaggesComponent } from './components/gestion-pasajes/show-pasagges/show-pasagges.component';
 import { HomeComponent } from './components/home/home.component';
 import { LogsTraductorComponent } from './components/logs-traductor/logs-traductor.component';
@@ -15,7 +16,10 @@ const routes: Routes = [
   {path: 'add-noticia', component: AltaComponent},
   {path: 'noticias', component: SlideNoticiaComponent},
   {path: 'show-passages', component: ShowPasaggesComponent},
-  {path: 'passage', component: PasajeComponent}
+  {path: 'passage', component: PasajeComponent},
+  {path: 'passenger', component: PasajeroComponent},
+  {path: 'passage/:id', component: PasajeComponent}
+
 ];
 
 @NgModule({

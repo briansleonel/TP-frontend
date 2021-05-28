@@ -1,0 +1,101 @@
+<div class="row p-0 m-0">
+    <div class="col-12 col-sm-6 my-4 my-sm-5 mx-auto p-0">
+        <div class="card shadow-lg my-1">
+            <div class="card-header">
+                <h2 class="text-center text-uppercase my-2">Alta Pasajero</h2>
+            </div>
+            <div class="card-body p-4">
+
+                <div class="row">
+                    <div class="col-sm-10 col-12 mx-auto">
+                        <form class="" #pasajeroForm="ngForm">
+
+                            <div class="row mb-3">
+                                <label for="dni" class="col-sm-4 col-12 col-form-label">DNI</label>
+                                <div class="col-sm-8 col-12">
+                                    <input type="number" class="form-control" id="dni" name="dni" [(ngModel)]="pasajero.nro_documento" required #dni="ngModel">
+                                </div>
+                            </div>
+
+                            <div *ngIf="dni.invalid && dni.touched" class="alert alert-danger text-center">
+                                <div *ngIf="dni.errors.required">
+                                    Debe ingresar el DNI
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="apellido" class="col-sm-4 col-12 col-form-label">Apellido</label>
+                                <div class="col-sm-8 col-12">
+                                    <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="pasajero.apellido" required #apellido="ngModel">
+                                </div>
+                            </div>
+
+                            <div *ngIf="apellido.invalid && apellido.touched" class="alert alert-danger text-center">
+                                <div *ngIf="apellido.errors.required">
+                                    Debe ingresar el APELLIDO
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="nombre" class="col-sm-4 col-12 col-form-label">Nombre</label>
+                                <div class="col-sm-8 col-12">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="pasajero.nombre" required #nombre="ngModel">
+                                </div>
+                            </div>
+
+                            <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger text-center">
+                                <div *ngIf="nombre.errors.required">
+                                    Debe ingresar el NOMBRE
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-4 col-12 col-form-label">E-Mail</label>
+                                <div class="col-sm-8 col-12">
+                                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="pasajero.email" required #email="ngModel">
+                                </div>
+                            </div>
+
+                            <div *ngIf="email.invalid && email.touched" class="alert alert-danger text-center">
+                                <div *ngIf="email.errors.required">
+                                    Debe ingresar el E-MAIL
+                                </div>
+                            </div>
+
+                            <!--
+                            <div *ngIf="precio.invalid && precio.touched" class="alert alert-danger text-center">
+                                <div *ngIf="precio.errors.required">
+                                    Debe ingresar el precio del pasaje
+                                </div>
+                            </div>
+
+                            <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger text-center">
+                                <div *ngIf="categoria.errors.required">
+                                    Debe seleccionar una categoría
+                                </div>
+                            </div> -->
+                            <!--
+                            <p>Status: <span> {{pasajeForm.status}} </span></p>
+                            <p>Pasajero: <span> {{pasajero.errors | json}} </span></p>
+                            <p>Precio: <span> {{precio.errors | json}} </span></p>
+                            <p>Categoria: <span> {{categoria.errors | json}} </span></p>
+                            -->
+
+                            <div class="row g-3 mt-5">
+                                <div class="col-12 col-sm-6 d-grid gap-2">
+                                    <button class="btn btn-lg btn-outline-danger text-uppercase" type="button" (click)="cancel()">Cancelar</button>
+                                </div>
+                                <div class="col-12 col-sm-6 d-grid gap-2">
+                                    <button class="btn btn-lg btn-outline-primary text-uppercase" type="button" [disabled]="pasajeroForm.invalid" (click)="confirm()">Guardar</button>
+                                </div>
+                            </div>
+
+                            
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

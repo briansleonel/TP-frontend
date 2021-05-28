@@ -52,13 +52,16 @@
                             <div class="row mb-3">
                                 <label for="email" class="col-sm-4 col-12 col-form-label">E-Mail</label>
                                 <div class="col-sm-8 col-12">
-                                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="pasajero.email" required #email="ngModel">
+                                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="pasajero.email" required ngModel [email]=true #email="ngModel">
                                 </div>
                             </div>
 
                             <div *ngIf="email.invalid && email.touched" class="alert alert-danger text-center">
                                 <div *ngIf="email.errors.required">
                                     Debe ingresar el E-MAIL
+                                </div>
+                                <div *ngIf="email.errors.email">
+                                    Ingrese un E-mail válido
                                 </div>
                             </div>
 

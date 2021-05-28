@@ -57,7 +57,7 @@ import { ConfirmPassengerDialogComponent } from './components/utils/confirm-pass
     AlifeFileToBase64Module,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut : 10000 , 
+      timeOut : 5000 , 
       positionClass : 'toast-top-right'
     }),
     MatDialogModule,

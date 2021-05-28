@@ -10,18 +10,8 @@ import { ConfirmDialogComponent } from '../utils/confirm-dialog/confirm-dialog.c
 })
 export class HomeComponent implements OnInit {
 
-  person = {apellido: "Apellido", nombre: 'nombre'}
-
-  constructor(private dialog: MatDialog) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: { message: '¿Desea eliminar?', obj: this.person }});
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log(res);
-      if(res)
-        console.log('ELiminar')
-    });
-  }
 }

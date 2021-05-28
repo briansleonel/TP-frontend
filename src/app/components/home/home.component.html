@@ -1,1 +1,45 @@
-<button mat-button class="btn btn-primary" (click)="openDialog()">Abrir dialog</button>
+<div class="row m-0">
+    <div class="col-12 col-md-6 mx-auto  my-3 p-4">
+        <section class="m-0 m-md-4 p-2 p-md-4 border bg-light rounded shadow">
+            <div class="text-center mb-3">
+                <h2 class="text-uppercase text-decoration-underline m-0">Trabajo Práctico N°5</h2>
+                <h4 class="text-capitalize mt-2 mb-4">Backend - Frontend</h4>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['noticias']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Noticias
+                </a>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['add-noticia']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Alta noticia
+                </a>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['traductor']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Traductor
+                </a>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['logs']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Logs de traductor
+                </a>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['show-passages']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Ver pasajes
+                </a>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['passage']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Alta pasaje
+                </a>
+            </div>
+            <div class="d-grid gap-2 my-3">
+                <a [routerLink]="['passenger']" class="btn btn-outline-success btn-lg text-uppercase">
+                    Alta pasajero
+                </a>
+            </div>
+        </section>
+    </div>
+</div>

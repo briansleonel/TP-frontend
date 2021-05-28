@@ -28,6 +28,7 @@ export class TraductorComponent implements OnInit {
           this.traductorLogsService
             .addLogs(this.translate)
             .subscribe((res) => console.log(res));
+          this.toastr.success('Traducción completada')
         },
         (error) => {
           this.toastr.error('Ha ocurrido un error')

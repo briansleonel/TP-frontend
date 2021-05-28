@@ -34,13 +34,13 @@ export class ShowPasaggesComponent implements OnInit {
     this.pasajeService.getPasajesFilters(this.find).subscribe(
       (result) => {
         this.passages = new Array<Passage>();
-        console.log('result', result);
+        //console.log('result', result);
         result.forEach((element) => {
           let pasaje = new Passage();
           Object.assign(pasaje, element);
           this.passages.push(pasaje);
         });
-        console.log(this.passages);
+        //console.log(this.passages);
       },
       (error) => {
         console.log(error);
@@ -52,6 +52,7 @@ export class ShowPasaggesComponent implements OnInit {
     this.find = new Passage();
     this.find.categoriaPasajero = '';
     this.viewPassages();
+    this.toastr.info('Filtros eliminados')
   }
 
   modificarPasaje(passage: Passage): void {
@@ -80,11 +81,17 @@ export class ShowPasaggesComponent implements OnInit {
 
   deletePasaje(passage: Passage): void {
     this.pasajeService.deletePassage(passage).subscribe((result) => {
-      console.log(result);
+      //console.log(result);
       if (result.status == '1') {
         this.toastr.info('Pasaje eliminado');
         this.viewPassages();
       } else this.toastr.warning('Error inesperado');
     });
+  }
+
+  onChangeCategoria(event): void {
+    this.find.categoriaPasajero = event;
+    this.viewPassages();
+    this.toastr.info("Búsqueda finalizada")
   }
 }

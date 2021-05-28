@@ -12,7 +12,7 @@
                             <label for="categoria" class="form-label">Categoria pasajero:</label>
                         </div>
                         <div class="col-12 col-sm-7">
-                            <select id="categoria" name="categoria" class="form-select form-select-sm" (click)="viewPassages()" [(ngModel)]="find.categoriaPasajero">
+                            <select id="categoria" name="categoria" class="form-select form-select-sm" (ngModelChange)="onChangeCategoria($event)" [(ngModel)]="find.categoriaPasajero">
                                 <option value="" selected></option>
                                 <option value="m">Menor</option>
                                 <option value="a">Adulto</option>

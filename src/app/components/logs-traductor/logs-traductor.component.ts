@@ -43,7 +43,7 @@ export class LogsTraductorComponent implements OnInit {
           this.logs.push(this.log);
         });
         if(this.find.source != '' || this.find.target != '')
-          this.toastr.success('', 'Búsqueda finalizada')
+          this.toastr.info('', 'Búsqueda finalizada')
       },
       (error) => {
         console.log(error);

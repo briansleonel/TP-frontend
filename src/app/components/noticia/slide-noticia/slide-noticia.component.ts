@@ -14,6 +14,7 @@ export class SlideNoticiaComponent implements OnInit {
   indexNoticia: number;
 
   constructor(private noticiaService: NoticiaService) {
+    this.noticias = new Array<Noticia>();
     this.getNoticias();
   }
 
@@ -31,6 +32,7 @@ export class SlideNoticiaComponent implements OnInit {
         )
         this.noticia = this.noticias[0];
         this.indexNoticia = 0;
+        console.log(this.noticias)
       }
     )
     

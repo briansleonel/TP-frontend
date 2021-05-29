@@ -22,13 +22,15 @@ export class ShowPasaggesComponent implements OnInit {
     private toastr: ToastrService,
     private dialog: MatDialog
   ) {
-    this.passages = new Array<Passage>();
-    this.passage = new Passage();
-    this.cleanFilters();
-    this.viewPassages();
+    
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.passages = new Array<Passage>();
+    this.find = new Passage();
+    this.find.categoriaPasajero = '';
+    this.viewPassages();
+  }
 
   viewPassages(): void {
     this.pasajeService.getPasajesFilters(this.find).subscribe(
@@ -93,5 +95,9 @@ export class ShowPasaggesComponent implements OnInit {
     this.find.categoriaPasajero = event;
     this.viewPassages();
     this.toastr.info("Búsqueda finalizada")
+  }
+
+  addPassage(): void {
+    this.router.navigate(['passage'])
   }
 }

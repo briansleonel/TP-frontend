@@ -13,13 +13,17 @@ export class SlideNoticiaComponent implements OnInit {
   noticia: Noticia;
   indexNoticia: number;
 
+  find: Noticia;
+
   constructor(private noticiaService: NoticiaService) {
     this.noticias = new Array<Noticia>();
+    this.find = new Noticia();
+    this.find.vigente = true
     this.getNoticias();
   }
 
   getNoticias(): void {
-    this.noticiaService.getNoticias().subscribe(
+    this.noticiaService.getNoticiasFilter(this.find).subscribe(
       (result) => {
         //console.log(result)
         this.noticias = new Array<Noticia>();

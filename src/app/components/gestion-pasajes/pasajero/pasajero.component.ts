@@ -19,18 +19,15 @@ export class PasajeroComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private dialog: MatDialog
-  ) {
-    
-  }
+  ) {}
 
   confirm(): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: '¿Guardar datos?'});
-    dialogRef.afterClosed().subscribe(
-      (res) => {
-        if(res)
-          this.save();
-      }
-    )
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: '¿Guardar datos?',
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) this.save();
+    });
   }
 
   save(): void {
@@ -45,10 +42,31 @@ export class PasajeroComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['show-passages']);
+    console.log(this.isEmpty())
+    if (this.isEmpty()) this.router.navigate(['passage']);
+    else {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: '¿Salir sin guardar?',
+      });
+      dialogRef.afterClosed().subscribe((res) => {
+        if (res) this.router.navigate(['passage']);
+      });
+    }
   }
 
   ngOnInit(): void {
     this.pasajero = new Person();
+    console.log(this.isEmpty())
+  }
+
+  isEmpty(): boolean {
+    if (
+      this.pasajero.apellido == undefined &&
+      this.pasajero.email == undefined &&
+      this.pasajero.nombre == undefined &&
+      this.pasajero.nro_documento == undefined
+    )
+      return true;
+    else return false;
   }
 }

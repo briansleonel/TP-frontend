@@ -13,7 +13,11 @@ export class NoticiaService {
   constructor(private _http: HttpClient) { }
 
   getNoticias(): Observable<any> {
-    return this._http.get(this.URL)
+    const httpOptions = {
+      headers: new HttpHeaders(),
+      params: new HttpParams()
+    }
+    return this._http.get(this.URL, httpOptions)
   }
 
   add(noticia: Noticia): Observable<any> {
@@ -29,5 +33,41 @@ export class NoticiaService {
     };
     //console.log("Body en el post: ",body)
     return this._http.post(this.URL, body, httpOptions)
+  }
+
+  delete(noticia: Noticia): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    return this._http.delete(this.URL + noticia._id, httpOptions)
+  }
+
+  update(noticia: Noticia): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    let body = this.convertJSON(noticia);
+    return this._http.put(this.URL + noticia._id, body, httpOptions);
+  }
+
+  getNoticiasFilter(noticia: Noticia): Observable<any> {
+    const httpOptions = {
+      headers : new HttpHeaders(),
+      params : {
+        vigente : String(noticia.vigente)
+      }
+    }
+    return this._http.get(this.URL , httpOptions);
+  }
+
+  convertJSON(noticia: Noticia): {} {
+    let n = {
+      _id : noticia._id,
+      titulo : noticia.titulo,
+      noticia : noticia.noticia,
+      img : noticia.img,
+      vigente : noticia.vigente
+    }
+    return n;
   }
 }

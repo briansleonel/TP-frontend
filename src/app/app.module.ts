@@ -30,7 +30,9 @@ import {MatButtonModule} from '@angular/material/button'
 
 import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmPassageDialogComponent } from './components/utils/confirm-passage-dialog/confirm-passage-dialog.component';
-import { ConfirmPassengerDialogComponent } from './components/utils/confirm-passenger-dialog/confirm-passenger-dialog.component'
+import { ConfirmPassengerDialogComponent } from './components/utils/confirm-passenger-dialog/confirm-passenger-dialog.component';
+import { FindPasajeroComponent } from './components/gestion-pasajes/find-pasajero/find-pasajero.component';
+import { ShowNoticiasComponent } from './components/noticia/show-noticias/show-noticias.component'
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { ConfirmPassengerDialogComponent } from './components/utils/confirm-pass
     ConfirmDialogComponent,
     ConfirmPassageDialogComponent,
     ConfirmPassengerDialogComponent,
+    FindPasajeroComponent,
+    ShowNoticiasComponent,
   ],
   imports: [
     BrowserModule,

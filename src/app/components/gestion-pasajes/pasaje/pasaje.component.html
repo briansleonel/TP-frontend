@@ -19,15 +19,28 @@
                             -->
 
                             <div class="row mb-3">
-                                <label for="pasajero" class="col-sm-4 col-12 col-form-label">Pasajero</label>
+                                <label for="pasajero" class="col-sm-3 col-12 col-form-label">Pasajero</label>
                                 <div class="col-sm-6 col-12">
                                     <select name="pasajero" class="form-select" aria-label="Default select" [(ngModel)]="pasaje.pasajero" required #pasajero="ngModel">
                                         <option *ngFor="let p of pasajeros" [ngValue]="p"> {{p.apellido}} {{p.nombre}} </option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2 col-12 d-grid gap-1">
-                                    <button class="btn btn-info btn-sm mt-3 my-sm-0" (click)="addPasajero()">Nuevo</button>
+                                <div class="col-sm-3 col-12 row row-cols-1 row-cols-sm-2 m-0">
+                                    <button class="btn btn-info btn-sm col mt-3 my-sm-0" (click)="addPasajero()" title="Nuevo pasajero">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                        </svg>
+                                    </button>
+                                    <!--
+                                    <button class="btn btn-success btn-sm col mt-3 my-sm-0" (click)="findPasajero()" title="Buscar pasajero">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </button>
+                                    -->
                                 </div>
+
                             </div>
 
                             <div *ngIf="pasajero.invalid && pasajero.touched" class="alert alert-danger text-center">
@@ -37,8 +50,8 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="precio" class="col-sm-4 col-12 col-form-label">Precio</label>
-                                <div class="col-sm-8 col-12">
+                                <label for="precio" class="col-sm-3 col-12 col-form-label">Precio</label>
+                                <div class="col-sm-9 col-12">
                                     <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioSinDesc" (ngModelChange)="getDescuento()" required #precio="ngModel">
                                 </div>
                             </div>
@@ -50,8 +63,8 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="categoria" class="col-sm-4 col-12 col-form-label">Categoría</label>
-                                <div class="col-sm-8 col-12">
+                                <label for="categoria" class="col-sm-3 col-12 col-form-label">Categoría</label>
+                                <div class="col-sm-9 col-12">
                                     <select name="categoria" class="form-select" aria-label="Default select" [(ngModel)]="pasaje.categoriaPasajero" (ngModelChange)="getDescuento()" required #categoria="ngModel">
                                         <option selected disabled>Eliga una opción</option>
                                         <option value="m">Menor</option>
@@ -79,8 +92,8 @@
                             -->
 
                             <div class="row my-5" *ngIf="precioSinDesc != null && pasaje.categoriaPasajero != null">
-                                <label for="precioTotal" class="col-sm-4 col-12 col-form-label">Precio total:</label>
-                                <div class="col-sm-8 col-12">
+                                <label for="precioTotal" class="col-sm-3 col-12 col-form-label">Precio total:</label>
+                                <div class="col-sm-9 col-12">
                                     <span class="form-control bg-light fw-bold">{{pasaje.precioPasaje | currency}}</span>
                                 </div>
                             </div>  

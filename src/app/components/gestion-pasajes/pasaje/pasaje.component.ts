@@ -26,7 +26,7 @@ export class PasajeComponent implements OnInit {
     private pasajeroService: PasajeroService,
     private pasajeService: PasajeService,
     private router: Router,
-    private activatedRoute: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private toastr: ToastrService
   ) {
@@ -39,7 +39,7 @@ export class PasajeComponent implements OnInit {
     this.start();
     this.activatedRoute.params.subscribe((params) => {
       if (params.id != undefined) {
-        this.action = "update";
+        this.action = 'update';
         this.cargarPassage(params.id);
       } else {
         this.action = 'new';
@@ -73,56 +73,73 @@ export class PasajeComponent implements OnInit {
   /**
    * Este método permite mostrar una ventana emergente de confirmación
    */
-   confirm(): void {
+  confirm(): void {
     //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: this.assignMessage() });
-    dialogRef.afterClosed().subscribe(
-      (res) => {
-        if(res)
-          this.save();
-      }
-    )
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.assignMessage(),
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) this.save();
+    });
   }
 
   /**
    * Permite guardar un determinado pasaje en la BD
    */
   save(): void {
-    if(this.pasaje.precioPasaje === 0)
-      this.toastr.warning('El precio ingresado no es válido')
+    if (this.pasaje.precioPasaje === 0)
+      this.toastr.warning('El precio ingresado no es válido');
     else {
-      if(this.action === 'update') {
-        this.pasajeService.updatePassage(this.pasaje).subscribe((result) => {
-          if (result.status == '1'){
-            this.router.navigate(['show-passages']);
-            this.toastr.success('¡Cambios guardados!');
-          } 
-        });
+      if (this.action === 'update') {
+        this.updatePassage();
       } else {
-        this.pasaje.fechaCompra = String(new Date());
-        this.pasajeService.addPasaje(this.pasaje).subscribe((result) => {
-          if (result.status == '1') {
-            this.router.navigate(['show-passages']);
-            this.toastr.success('¡Pasaje guardado!');
-          } 
-        });
+        this.newPassage();
       }
     }
   }
 
+  updatePassage(): void {
+    this.pasajeService.updatePassage(this.pasaje).subscribe((result) => {
+      if (result.status == '1') {
+        this.router.navigate(['show-passages']);
+        this.toastr.success('¡Cambios guardados!');
+      }
+    });
+  }
+
+  newPassage(): void {
+    this.pasaje.fechaCompra = String(new Date());
+    this.pasajeService.addPasaje(this.pasaje).subscribe((result) => {
+      if (result.status == '1') {
+        this.router.navigate(['show-passages']);
+        this.toastr.success('¡Pasaje guardado!');
+      }
+    });
+  }
+
   cancel(): void {
-    this.router.navigate(['show-passages']);
+    if (this.isEmpty()) this.router.navigate(['show-passages']);
+    else {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: '¿Salir sin guardar?',
+      });
+      dialogRef.afterClosed().subscribe((res) => {
+        if (res) this.router.navigate(['show-passages']);
+      });
+    }
   }
 
   assignMessage(): string {
-    if(this.action === 'update')
-      return '¿Actualizar datos?'
-    else
-      return '¿Guardar datos?'
+    if (this.action === 'update') return '¿Actualizar datos?';
+    else return '¿Guardar datos?';
   }
 
   addPasajero(): void {
     this.router.navigate(['passenger']);
+  }
+
+  findPasajero(): void {
+    this.router.navigate(['find-passenger']);
   }
 
   /**
@@ -147,7 +164,7 @@ export class PasajeComponent implements OnInit {
   /**
    * Permite calcular el descuento del pasaje, para un determinado cliente
    */
-   calcularDescuento(): void {
+  calcularDescuento(): void {
     if (this.pasaje.categoriaPasajero === 'm')
       this.pasaje.precioPasaje = this.precioSinDesc - this.precioSinDesc * 0.25;
     else if (this.pasaje.categoriaPasajero === 'j')
@@ -164,4 +181,14 @@ export class PasajeComponent implements OnInit {
     }
   }
 
+  isEmpty(): boolean {
+    if (
+      this.pasaje._id == undefined &&
+      this.pasaje.categoriaPasajero == undefined &&
+      this.pasaje.pasajero == undefined &&
+      this.pasaje.precioPasaje == undefined
+    )
+      return true;
+    else return false;
+  }
 }
